@@ -40,10 +40,10 @@ const regexLetrasPermitidas = /[a-z\s]/;
  * @since 02/06/2023
  * @description Función que Inicia las animaciones, llama a los métodos que agregan las clases para la animación
  */
-function animate() {
-    btnEncriptar.setAttribute('disabled', 'true');
-    btnDesencriptar.setAttribute('disabled', 'true');
-    txtTexto.setAttribute('disabled', 'true');
+function animate(textoResuelto) {
+
+    // Inician las animaciones principales y se deshabilitan campos mientras se ejecutan las animaciones.
+    deshabilitaBotones();
     animateBarita();
     animateCopiar();
 
@@ -56,6 +56,7 @@ function animate() {
     // Inicia la animación del sombrero 3s después y una vez que la animación del texto finalizó, para simular que el texto se encuentra dentro.
     // Nota: Checar css para mayor comprensión.
     setTimeout(() => {
+        txtTexto.value = textoResuelto;
         animateSombrero();
         barita.classList.remove('barita-animation');
     }, 3000);
@@ -70,6 +71,7 @@ function animate() {
     // Nota: Checar css para mayor comprensión.
     setTimeout(() => {
         limpiaAnimaciones();
+        habilitaBotones();
     }, 7000)
 }
 
@@ -123,9 +125,28 @@ function limpiaAnimaciones() {
     txtTexto.classList.remove('txtEncriptador-animacion');
     sombrero.classList.remove('sombrero-animacion');
     btnCopiar.classList.remove('hide-copiar-animation');
+}
+
+/**
+ * @author Ivan Abad
+ * @since 02/06/2023
+ * @description Función que remueve la propiedad disabled para activar los botones nuevamente.
+ */
+function habilitaBotones() {
     btnEncriptar.removeAttribute('disabled');
     btnDesencriptar.removeAttribute('disabled');
     txtTexto.removeAttribute('disabled');
+}
+
+/**
+ * @author Ivan Abad
+ * @since 02/06/2023
+ * @description Función que agrega la propiedad disabled para desactivar los botones y el textarea mientras las animaciones se ejecutan.
+ */
+function deshabilitaBotones() {
+    btnEncriptar.setAttribute('disabled', 'true');
+    btnDesencriptar.setAttribute('disabled', 'true');
+    txtTexto.setAttribute('disabled', 'true');
 }
 
 /**
@@ -171,35 +192,6 @@ function obtieneArregloLetras(texto) {
 /**
  * @author Ivan Abad
  * @since 02/06/2023
- * @description Función que inicia la acción de encriptar. LLama al método de encriptar texto.
- */
-function actionEncriptar() {
-    const arregloLetras = obtieneArregloLetras(txtTexto.value);
-    const textoEncriptado = encriptaTexto(arregloLetras);
-    animate();
-    setTimeout(() => {
-        animateSombrero();
-        txtTexto.value = textoEncriptado;
-    }, 3000);
-}
-
-/**
- * @author Ivan Abad
- * @since 02/06/2023
- * @description Función que inicia la acción de desencriptar. LLama al método de desencriptar texto.
- */
-function actionDesencriptar() {
-    const textoDesencriptado = desencriptaTexto(txtTexto.value);
-    animate();
-    setTimeout(() => {
-        animateSombrero();
-        txtTexto.value = textoDesencriptado;
-    }, 3000);
-}
-
-/**
- * @author Ivan Abad
- * @since 02/06/2023
  * @description Función que revisa si el campo de texto está vacío, si lo está deshabiltia los botones de encriptar/desencriptar.
  */
 function checkTextoVacio() {
@@ -207,6 +199,11 @@ function checkTextoVacio() {
     return txtTexto.value === '';
 }
 
+/**
+ * @author Ivan Abad
+ * @since 02/06/2023
+ * @description Función que deshabilita los botones si el área de texto está vacía.
+ */
 function disableBotones() {
     if(checkTextoVacio()) {
         btnEncriptar.setAttribute('disabled', 'true');
@@ -219,13 +216,38 @@ function disableBotones() {
     }
 }
 
+/**
+ * @author Ivan Abad
+ * @since 02/06/2023
+ * @description Función que copia el contenido del área de texto al clipboard si no se encuetnra vacía.
+ */
 function copiarAlClipboard() {    
     if(!checkTextoVacio()) {
         txtTexto.select();
         txtTexto.setSelectionRange(0, 99999); // para celulares
-    
         navigator.clipboard.writeText(txtTexto.value);
     } 
+}
+
+/**
+ * @author Ivan Abad
+ * @since 02/06/2023
+ * @description Función que inicia la acción de encriptar. LLama al método de encriptar texto.
+ */
+function actionEncriptar() {
+    const arregloLetras = obtieneArregloLetras(txtTexto.value);
+    const textoEncriptado = encriptaTexto(arregloLetras);
+    animate(textoEncriptado);
+}
+
+/**
+ * @author Ivan Abad
+ * @since 02/06/2023
+ * @description Función que inicia la acción de desencriptar. LLama al método de desencriptar texto.
+ */
+function actionDesencriptar() {
+    const textoDesencriptado = desencriptaTexto(txtTexto.value);
+    animate(textoDesencriptado); 
 }
 
 /**
@@ -240,6 +262,7 @@ btnCopiar.onclick = copiarAlClipboard;
 
 /**
  * @description Previene que el usurio ingrese letras o caracteres especiales no permitidos.
+ * Compara la tecla tipeada con el regex proporcionado y determina si la letra está permitida.
  */
 txtTexto.addEventListener('keydown', e => {
     if(!regexLetrasPermitidas.test(e.key)) {

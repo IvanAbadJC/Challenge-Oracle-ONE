@@ -1,8 +1,8 @@
 # Challenge-Oracle-ONE
 
-Primer reto de ONE de Oracle.
+Primer reto de Oracle ONE: Encriptador y desencriptador de textos.
 
-## **Encriptador y desencriptador de textos**
+## **Detalles**
 
 Para este proyecto se creó un sistema de encriptación y desencriptación de textos customizados. Las reglas establecidas para este reto fueron las siguientes:
 
