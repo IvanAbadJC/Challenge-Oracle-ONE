@@ -195,7 +195,6 @@ function obtieneArregloLetras(texto) {
  * @description Función que revisa si el campo de texto está vacío, si lo está deshabiltia los botones de encriptar/desencriptar.
  */
 function checkTextoVacio() {
-    console.log(txtTexto.value === '')
     return txtTexto.value === '';
 }
 
