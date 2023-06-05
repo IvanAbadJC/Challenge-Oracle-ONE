@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+    --clr-primary: #0A3871;
+    --clr-primary-hover: #0f52a3;
+    --clr-secondary: #D8DFE8;
+    --clr-secondary-hover: #e5edf7;
+    --clr-bg: #E9ECF8;
+    --clr-warning-msg: #495057;
+}
+
+html, body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--clr-bg);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    background-color: var(--clr-primary);
+    box-shadow: 0px 3px 10px rgba(0,0,0,.6);
+}
+
+header > img {
+    height: 3rem;
+}
+
+header > h1 {
+    color: var(--clr-bg);
+    width: 100%;
+    text-align: center;
+    margin-left: -100px;
+}
+
+header > h2 {
+    display: none;
+    color: var(--clr-bg);
+    width: 100%;
+    text-align: center;
+    margin-left: -100px;
+}
+
+.redes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.redes > span {
+    color: var(--clr-primary);
+}
+
+.redes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+main {
+    height: 90vh;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+section {
+    width: 50rem;
+}
+
+.input-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.3rem;
+}
+
+.barita {
+    margin-left: 10rem;
+    width: 300px;
+    position: absolute;
+    top: 3rem;
+}
+
+.barita-animation {
+    animation: MoveUpDown 1s linear;
+}
+
+@keyframes MoveUpDown {
+    0%, 100% {
+      top: 3rem;
+    }
+    50% {
+      top: 6rem;
+    }
+}
+.text-area {
+    position: relative;
+    width: 50%;
+    height: 40%;
+    margin-top: 9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boton-copiar {
+    width: 2rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0.8;
+    cursor: pointer;
+    fill: var(--clr-primary);
+}
+
+.boton-copiar-disabled {
+    cursor: default;
+    fill: rgb(190, 190, 190);
+}
+
+.hide-copiar-animation {
+    animation: hide-copiar 6s ease-in-out;
+}
+
+@keyframes hide-copiar { 
+    100% { opacity: 0.4; }
+    90% { opacity: 0; }
+    80% { opacity: 0; }
+    70% { opacity: 0; }
+    60% { opacity: 0; }
+    50% { opacity: 0; }
+    40% { opacity: 0; }
+    30% { opacity: 0; }
+    20% { opacity: 0; }
+    10% { opacity: 0; }
+    0% { opacity: 0.4; }
+} 
+
+.txtEncriptador {
+    width: 100%;
+    height: 95%;
+    outline: none;
+    border: none;
+    resize: none;
+    background-color: transparent;
+    overflow: auto;
+    font-size: xx-large;
+    color: var(--clr-primary);
+    text-transform: lowercase;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;  
+}
+
+.txtEncriptador::placeholder {
+    text-align: center;
+    font-size: xx-large;
+}
+
+.txtEncriptador:disabled {
+    background-color: transparent;
+}
+
+.warning-message {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.warning-message > small {
+    color: var(--clr-warning-msg);
+}
+
+.txtEncriptador-animacion {
+    animation-name: encoger, transparent, ocultar, ocultar-reverse, transparent-reverse, encoger-reverse;
+    animation-duration: 1000ms, 1000ms, 1000ms, 1000ms, 1000ms, 1000ms;
+    animation-delay: 0ms, 1000ms, 2000ms, 3000ms, 4000ms, 5000ms; /* add this */
+    animation-timing-function: ease-in, ease-out, linear, linear, ease-out, ease-out;
+    animation-iteration-count: 1, 1, 1, 1, 1, 1;
+}
+
+@keyframes encoger{ 
+    from { width: 100%; }
+    to { width: 5%; } 
+} 
+
+@keyframes ocultar{ 
+    from { transform: translateY(0px) scale(1); width: 5%; opacity: 0;}
+    to { transform: translateY(300px) scale(0.1); width: 5%; opacity: 0;} 
+} 
+
+@keyframes transparent{ 
+    0% { transform: translateY(0px) scale(1); width: 5%; opacity: 1; }
+    50% { transform: translateY(100px) scale(0.5); width: 5%; opacity: 0; } 
+    100% { transform: translateY(300px) scale(0.1); width: 5%; opacity: 0; }
+} 
+
+@keyframes encoger-reverse{ 
+    from { width: 5%; }
+    to { width: 100%; } 
+} 
+
+@keyframes ocultar-reverse{ 
+    from { transform: translateY(300px) scale(0.1); width: 5%; opacity: 0; }
+    to { transform: translateY(0px) scale(1); width: 5%; opacity: 0; } 
+} 
+
+@keyframes transparent-reverse{ 
+    0% { transform: translateY(300px) scale(0.1); width: 5%; opacity: 0; }
+    50% { transform: translateY(100px) scale(0.5); width: 5%; opacity: 0; } 
+    100% { transform: translateY(0px) scale(1); width: 5%; opacity: 1; }
+} 
+
+.sombrero {
+    width: 350px;
+}
+
+.sombrero-animacion {
+    animation: shake 1500ms ease-out;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.botones {
+    margin-bottom: 2rem;
+}
+
+.btnEncriptar {
+    cursor: pointer;
+    width: 10rem;
+    height: 2.7rem;
+    color: var(--clr-secondary);
+    background-color: var(--clr-primary);
+    border: none;
+    border-radius: 15px;
+    font-size: large;
+}
+
+.btnEncriptar:hover {
+    background-color: var(--clr-primary-hover);
+}
+
+.btnDesencriptar {
+    cursor: pointer;
+    width: 10rem;
+    height: 2.7rem;
+    color: var(--clr-primary);
+    background-color: var(--clr-secondary);
+    border: 1px solid var(--clr-primary);
+    border-radius: 15px;
+    font-size: large;
+}
+
+.btnDesencriptar:hover {
+    background-color: var(--clr-secondary-hover);
+}
+
+.btnEncriptar:disabled, .btnDesencriptar:disabled {
+    cursor: default;
+    background-color: rgb(190, 190, 190);
+    color: rgb(115, 115, 115);
+    border-color: rgb(190, 190, 190);
+}
+
+@media screen and (max-width: 768px) {
+    header > h1 {
+        display: none;
+    }
+
+    header > h2 {
+        display: block;
+    }
+
+    header > img {
+        height: 2rem;
+    }
+
+    .txtEncriptador {
+        font-size: xx-large;
+    }
+    
+    .txtEncriptador::placeholder {
+        font-size: xx-large;
+    }
+
+    .boton-copiar {
+        width: 1.5rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .sombrero {
+        width: 250px;
+    }
+
+    .barita {
+        width: 200px;
+    }
+
+    @keyframes MoveUpDown {
+        0%, 100% {
+          top: 3rem;
+        }
+        50% {
+          top: 6rem;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .barita {
+        top: 1rem;
+        margin-left: 8rem;
+    }
+
+    .sombrero {
+        width: 180px;
+    }
+
+    .barita {
+        width: 150px;
+    }
+
+    .text-area {
+        margin-top: 5rem;
+    }
+
+    .txtEncriptador {
+        font-size: x-large;
+    }
+    
+    .txtEncriptador::placeholder {
+        font-size: x-large;
+    }
+
+    .btnEncriptar,
+    .btnDesencriptar {
+        height: 2rem;
+        width: 8rem;
+    }
+
+    @keyframes MoveUpDown {
+        0%, 100% {
+          top: 1rem;
+        }
+        50% {
+          top: 3rem;
+        }
+    }
+}

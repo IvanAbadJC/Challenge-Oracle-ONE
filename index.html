@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Encriptador</title>
+</head>
+<body>
+    <header>
+        <img src="assets/Logo.svg" alt="Logo Alura">
+        <h1>Challenge 1: Encriptador mágico</h1>
+        <h2>Challenge 1</h2>
+    </header>
+    <main>
+        <section class="input-section">
+            <img id="barita" class="barita" src="assets/barita.png" alt="Barita mágica">
+            <div class="text-area">
+                <textarea id="txtEncriptador" class="txtEncriptador" placeholder="Ingresa aquí tu texto"></textarea>
+                <svg id="boton-copiar" class="boton-copiar boton-copiar-disabled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M272 0H396.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H272c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128H192v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>
+            </div>
+            <!-- <div class="warning-message">
+                <img src="assets/exclamation_icon.svg" alt="Ícono de exclamación para nota">
+                <small>Solo letras minúsculas y sin acentos</small>
+            </div> -->
+            <img id="sombrero" class="sombrero" src="assets/sombrero.png" alt="Sombrero mágico">
+            <div class="botones">
+                <button id="btnEncriptar" class="btnEncriptar" disabled>Encriptar</button>
+                <button id="btnDesencriptar" class="btnDesencriptar" disabled>Desencriptar</button>
+            </div>
+            <div class="redes">
+                <span>Mis Redes</span>
+                <div class="redes-container">
+                    <a href="https://github.com/IvanAbadJC" target="_blank">
+                        <img src="assets/github-mark.png" alt="GitHub Logo" height="30px" >
+                    </a>
+                    <a href="#">
+                        <img src="assets/LI-In-Bug.png" alt="LinkedIn Logo" height="30px">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="encriptador.js"></script>
+</body>
+</html>
